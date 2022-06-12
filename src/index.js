@@ -26,10 +26,7 @@ function searchСountry(e) {
 
   fetchCountries(name)
     .then(findCountry)
-    .catch(error => {
-      Notify.failure('Oops, there is no country with that name');
-      return;
-    })
+    .catch(onFetchError)
     .finally(
       ((refs.countryInfo.innerHTML = ''), (refs.countryList.innerHTML = ''))
     );
@@ -71,4 +68,6 @@ const createInfoCard = mark => {
   refs.countryInfo.insertAdjacentHTML('beforeend', mark);
 };
 
-function onFetchError(error) {}
+function onFetchError(error) {
+  Notify.failure('Oops, there is no country with that name');
+}
